@@ -41,6 +41,9 @@ while (!userChoise.Equals("esc"))
         case "1":
             AggiungiCliente(banca1);
             break;
+        case "7":
+            StampaListaClienti(banca1.clienti);
+            break;
         default:
             break;
     }
@@ -80,4 +83,17 @@ void AggiungiCliente(Banca banca)
     int stipendio = Convert.ToInt32(Console.ReadLine());
 
     banca.AggiungiCliente(nome, cognome, codiceFiscale, stipendio);
+}
+
+void StampaListaClienti(List<Cliente> clienti)
+{
+    Console.WriteLine("Lista Clienti Banca");
+    Console.WriteLine("----------------");
+    foreach (Cliente cliente in clienti)
+    {
+        Console.WriteLine("Nome:      " + cliente.Nome);
+        Console.WriteLine("Cognome:   " + cliente.Cognome);
+        Console.WriteLine("C.F.:      " + cliente.CodiceFiscale);
+        Console.WriteLine("Stipendio: " + cliente.Stipendio);
+    }
 }
