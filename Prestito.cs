@@ -26,4 +26,24 @@
 //Bonus:
 //visualizzare per ogni cliente, la situazione dei suoi prestiti in formato tabellare.
 
-Console.WriteLine("Ciao sono una banca");
+public class Prestito
+{
+    public static int Conteggio = 0;
+    public int Id { get; set; }
+    public Cliente Cliente { get; set; }
+    public int totalePrestito { get; set; }
+    public double totaleRata { get; set; }
+    public DateOnly Inizio { get; set; }
+    public DateOnly Fine { get; set; }
+
+    public Prestito(Cliente cliente, int totalePrestito, double totaleRata, DateOnly inizio, DateOnly fine)
+    {
+        Conteggio++;
+        Id = Conteggio;
+        Cliente = cliente;
+        this.totalePrestito = totalePrestito;
+        this.totaleRata = totaleRata;
+        Inizio = inizio;
+        Fine = fine;
+    }
+}

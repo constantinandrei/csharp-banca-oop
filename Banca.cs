@@ -26,4 +26,16 @@
 //Bonus:
 //visualizzare per ogni cliente, la situazione dei suoi prestiti in formato tabellare.
 
-Console.WriteLine("Ciao sono una banca");
+public class Banca
+{
+    public string Nome { get;}
+    public List<Cliente> clienti;
+    public List<Prestito> prestito;
+
+    public Banca(string nome)
+    {
+        Nome = nome;
+        clienti = new List<Cliente>();
+        prestito = new List<Prestito>();
+    }
+}

@@ -26,4 +26,11 @@
 //Bonus:
 //visualizzare per ogni cliente, la situazione dei suoi prestiti in formato tabellare.
 
-Console.WriteLine("Ciao sono una banca");
+public class Cliente
+{
+    public string Nome { get; set; }
+    public string Cognome { get; set; }
+    public string CodiceFiscale { get; set; }
+    public int Stipendio { get; set; }
+
+}
