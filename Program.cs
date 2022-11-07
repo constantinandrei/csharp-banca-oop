@@ -48,6 +48,9 @@ while (!userChoise.Equals("esc"))
         case "3":
             CercaCliente(banca1);
             break;
+        case "4":
+            AggiungiPrestito(banca1);
+            break;
         case "7":
             StampaListaClienti(banca1.clienti);
             break;
@@ -160,5 +163,56 @@ void ModificaCliente(Banca banca)
     } else
     {
         Console.WriteLine("Cliente non trovato");
+    }
+}
+
+void AggiungiPrestito(Banca banca)
+{
+    Console.WriteLine("inserisci il Codice Fiscale del cliente a cui modificare il prestito");
+    Cliente cliente = banca.CercaCliente(Console.ReadLine());
+    if (cliente != null)
+    {
+        Console.WriteLine("Stai inserendo il prestito per il seguente cliente:");
+        StampaCliente(cliente);
+        Console.WriteLine("Inserisci l'importo del prestito");
+        int importoPrestito = Convert.ToInt32(Console.ReadLine());
+        Console.WriteLine("Inserisci l'importo della rata");
+        int rataPrestito = Convert.ToInt32(Console.ReadLine());
+        Console.WriteLine("Inserisci la data di inizio prestito formato gg-mm-aaaa");
+        DateOnly dataInizio = ConvertiStringaInData();
+        Console.WriteLine("Inserisci la data di fine prestito formato gg-mm-aaaa");
+        DateOnly dataFine = ConvertiStringaInData();
+        banca.AggiungiPrestito(new Prestito(cliente, importoPrestito, rataPrestito, dataInizio, dataFine));
+        Console.WriteLine("Prestito aggiunto correttamente");
+        
+
+    }
+}
+
+DateOnly ConvertiStringaInData()
+{
+    string testo = Console.ReadLine();
+    int day = Convert.ToInt32(testo[0] + testo[1]);
+    int month = Convert.ToInt32(testo[3] + testo[4]);
+    int year = Convert.ToInt32(testo[6] + testo[7] + testo[8] + testo[9]);
+    return DateOnly.FromDateTime(new DateTime(year, month, day));
+}
+
+void StampaPrestito(Prestito prestito)
+{
+    Console.WriteLine("Stampa Prestito ID: " + prestito.Id);
+    Console.WriteLine("CF Cliente:         " + prestito.Cliente.CodiceFiscale);
+    Console.WriteLine("Importo:            " + prestito.TotalePrestito);
+    Console.WriteLine("Importo rata        " + prestito.TotaleRata);
+    Console.WriteLine("Data Inzio:         " + prestito.Inizio);
+    Console.WriteLine("Data Fine:          " + prestito.Fine);
+    Console.WriteLine("-------------------------");
+}
+
+void StampaListaPrestiti(Banca banca)
+{
+    foreach (Prestito prestito in banca.prestiti)
+    {
+        StampaPrestito(prestito);
     }
 }

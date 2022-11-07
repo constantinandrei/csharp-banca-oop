@@ -32,13 +32,13 @@ public class Banca
 {
     public string Nome { get;}
     public List<Cliente> clienti;
-    public List<Prestito> prestito;
+    public List<Prestito> prestiti;
 
     public Banca(string nome)
     {
         Nome = nome;
         clienti = new List<Cliente>();
-        prestito = new List<Prestito>();
+        prestiti = new List<Prestito>();
     }
 
     public bool AggiungiCliente(Cliente cliente)
@@ -75,4 +75,8 @@ public class Banca
         return false;
     }
    
+    public void AggiungiPrestito(Prestito prestito)
+    {
+        prestiti.Add(prestito);
+    }
 }

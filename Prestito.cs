@@ -31,19 +31,21 @@ public class Prestito
     public static int Conteggio = 0;
     public int Id { get; set; }
     public Cliente Cliente { get; set; }
-    public int totalePrestito { get; set; }
-    public double totaleRata { get; set; }
+    public int TotalePrestito { get; set; }
+    public int TotaleRata { get; set; }
     public DateOnly Inizio { get; set; }
     public DateOnly Fine { get; set; }
 
-    public Prestito(Cliente cliente, int totalePrestito, double totaleRata, DateOnly inizio, DateOnly fine)
+    public Prestito(Cliente cliente, int totalePrestito, int totaleRata, DateOnly inizio, DateOnly fine)
     {
-        Conteggio++;
-        Id = Conteggio;
+        
         Cliente = cliente;
-        this.totalePrestito = totalePrestito;
-        this.totaleRata = totaleRata;
+        TotalePrestito = totalePrestito;
+        TotaleRata = totaleRata;
         Inizio = inizio;
         Fine = fine;
+        Conteggio++;
+        Id = Conteggio;
     }
+
 }
