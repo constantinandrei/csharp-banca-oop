@@ -41,12 +41,16 @@ while (!userChoise.Equals("esc"))
         case "1":
             AggiungiCliente(banca1);
             break;
-        case "7":
-            StampaListaClienti(banca1.clienti);
+        case "2":
+            ModificaCliente(banca1);
             break;
         case "3":
             CercaCliente(banca1);
             break;
+        case "7":
+            StampaListaClienti(banca1.clienti);
+            break;
+        
         default:
             break;
     }
@@ -72,9 +76,8 @@ void PrintMenu(List<String> vociMenu)
     Console.WriteLine("--------------------------------------");
 }
 
-// test per i riferimenti
 
-void AggiungiCliente(Banca banca)
+Cliente CreaCliente()
 {
     Console.WriteLine("Inserisci il nome cliente");
     string nome = Console.ReadLine();
@@ -85,7 +88,14 @@ void AggiungiCliente(Banca banca)
     Console.WriteLine("Inserisci lo stipendio del cliente");
     int stipendio = Convert.ToInt32(Console.ReadLine());
 
-    banca.AggiungiCliente(nome, cognome, codiceFiscale, stipendio);
+    return new Cliente(nome, cognome, codiceFiscale, stipendio);
+}
+
+void AggiungiCliente(Banca banca)
+{
+    Cliente cliente = CreaCliente(); 
+
+    banca.AggiungiCliente(cliente);
 }
 
 void StampaListaClienti(List<Cliente> clienti)
@@ -109,12 +119,29 @@ void StampaCliente(Cliente cliente)
 void CercaCliente(Banca banca)
 {
     Console.WriteLine("Inserire il Codice Fiscale del Cliente");
-    Cliente trovato = banca.RicercaCliente(Console.ReadLine());
+    Cliente trovato = banca.CercaCliente(Console.ReadLine());
     if (trovato != null)
     {
         StampaCliente(trovato);
     } else
     {
         Console.WriteLine("Non abbiamo questo codice fiscale nel nostro database");
+    }
+}
+
+void ModificaCliente(Banca banca)
+{
+    Console.WriteLine("inserisci il Codice Fiscale del cliente da modificare:");
+    Cliente clienteDaModificare = banca.CercaCliente(Console.ReadLine());
+    if (clienteDaModificare != null)
+    {
+        Console.WriteLine("Se il valore viene lasciato vuoto non verrà modificato.");
+        Console.WriteLine("Stai modificando il cliente: ");
+        StampaCliente(clienteDaModificare);
+        Cliente clienteModificato = CreaCliente();
+        banca.ModificaCliente(clienteDaModificare, clienteModificato);
+    } else
+    {
+        Console.WriteLine("Cliente non trovato");
     }
 }

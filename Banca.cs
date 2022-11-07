@@ -41,15 +41,15 @@ public class Banca
         prestito = new List<Prestito>();
     }
 
-    public bool AggiungiCliente(string nome, string cognome, string codiceFiscale, int stipendio)
+    public bool AggiungiCliente(Cliente cliente)
     {
-        if (nome == null || cognome == null || codiceFiscale == null || stipendio <= 0)
+        if (cliente.Nome == null || cliente.Cognome == null || cliente.CodiceFiscale == null || cliente.Stipendio <= 0)
             return false;
-        clienti.Add(new Cliente(nome, cognome, codiceFiscale, stipendio));
+        clienti.Add(cliente);
         return true;
     }
     
-    public Cliente RicercaCliente(string codiceFiscale)
+    public Cliente CercaCliente(string codiceFiscale)
     {
         foreach (Cliente cliente in clienti)
         {
@@ -59,6 +59,20 @@ public class Banca
             }
         }
         return null;
+    }
+
+    public bool ModificaCliente(Cliente vecchio, Cliente nuovoCliente)
+    {
+        Cliente cliente = CercaCliente(vecchio.CodiceFiscale);
+        if(cliente != null)
+        {
+            cliente.Nome = nuovoCliente.Nome != "" ? nuovoCliente.Nome : cliente.Nome;
+            cliente.Cognome = nuovoCliente.Cognome != "" ? nuovoCliente.Cognome : cliente.Cognome;
+            cliente.CodiceFiscale = nuovoCliente.CodiceFiscale != "" ? nuovoCliente.CodiceFiscale : cliente.CodiceFiscale;
+            cliente.Stipendio = nuovoCliente.Stipendio > 0 ? nuovoCliente.Stipendio : cliente.Stipendio;
+            return true;
+        }
+        return false;
     }
    
 }
