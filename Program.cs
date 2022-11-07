@@ -26,4 +26,37 @@
 //Bonus:
 //visualizzare per ogni cliente, la situazione dei suoi prestiti in formato tabellare.
 
-Console.WriteLine("Ciao sono una banca");
+Banca banca = new Banca("MPS");
+
+// Gestione menu console
+
+string userChoise = "start";
+
+while (!userChoise.Equals("esc"))
+{
+    InizioMenu();
+
+}
+
+void InizioMenu()
+{
+    Console.WriteLine("Menu principale - " + banca.Nome);
+
+    MenuBanca();
+    Console.WriteLine("Per uscire digitare 'esc' e premere Invio");
+    userChoise = Console.ReadLine();
+}
+
+void MenuBanca()
+{
+    Console.WriteLine("--------------------------------------");
+    Console.WriteLine("1. Aggiungere un cliente");
+    Console.WriteLine("2. Modificare un cliente");
+    Console.WriteLine("3. Ricerca un cliente");
+    Console.WriteLine("4. Aggiungi un prestito");
+    Console.WriteLine("5. Ricerca prestito per cliente");
+    Console.WriteLine("6. Ricerca rate da pagare per cliente");
+    Console.WriteLine("7. Stampa prospetto clienti");
+    Console.WriteLine("8. Stampa prospetto utenti");
+    Console.WriteLine("--------------------------------------");
+}
