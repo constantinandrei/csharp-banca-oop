@@ -192,9 +192,9 @@ void AggiungiPrestito(Banca banca)
 DateOnly ConvertiStringaInData()
 {
     string testo = Console.ReadLine();
-    int day = Convert.ToInt32(testo[0] + testo[1]);
-    int month = Convert.ToInt32(testo[3] + testo[4]);
-    int year = Convert.ToInt32(testo[6] + testo[7] + testo[8] + testo[9]);
+    int day = Convert.ToInt32(testo.Substring(0,2));
+    int month = Convert.ToInt32(testo.Substring(3, 2));
+    int year = Convert.ToInt32(testo.Substring(6, 4));
     return DateOnly.FromDateTime(new DateTime(year, month, day));
 }
 
