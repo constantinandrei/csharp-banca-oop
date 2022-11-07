@@ -26,7 +26,7 @@
 //Bonus:
 //visualizzare per ogni cliente, la situazione dei suoi prestiti in formato tabellare.
 
-Banca banca = new Banca("MPS");
+Banca banca1 = new Banca("MPS");
 List<String> menuBanca = new List<String> { "Aggiungere un Cliente", "Modificare un cliente", "Ricerca un cliente", "Aggiungi un prestito", "Ricerca prestito per cliente",
 "Ricerca rate da pagare per cliente", "Stampa prospetto clienti", "Stampa prospetto utenti"};
 // Gestione menu console
@@ -36,20 +36,27 @@ string userChoise = "start";
 while (!userChoise.Equals("esc"))
 {
     InizioMenu();
-
+    switch (userChoise)
+    {
+        case "1":
+            AggiungiCliente(banca1);
+            break;
+        default:
+            break;
+    }
 }
 
 void InizioMenu()
 {
-    Console.WriteLine("Menu principale - " + banca.Nome);
+    Console.WriteLine("Menu principale - " + banca1.Nome);
 
-    printMenu(menuBanca);
+    PrintMenu(menuBanca);
     Console.WriteLine("Per uscire digitare 'esc' e premere Invio");
     userChoise = Console.ReadLine();
 }
 
 
-void printMenu(List<String> vociMenu)
+void PrintMenu(List<String> vociMenu)
 {
     Console.WriteLine("--------------------------------------");
     for (int i = 0; i < vociMenu.Count; i++)
@@ -57,4 +64,20 @@ void printMenu(List<String> vociMenu)
         Console.WriteLine("{0}. {1}", i+1, vociMenu[i]);
     }
     Console.WriteLine("--------------------------------------");
+}
+
+// test per i riferimenti
+
+void AggiungiCliente(Banca banca)
+{
+    Console.WriteLine("Inserisci il nome cliente");
+    string nome = Console.ReadLine();
+    Console.WriteLine("Inserisci il cognome del cliente");
+    string cognome = Console.ReadLine();
+    Console.WriteLine("Inserisci il codice fiscale del cliente");
+    string codiceFiscale = Console.ReadLine();
+    Console.WriteLine("Inserisci lo stipendio del cliente");
+    int stipendio = Convert.ToInt32(Console.ReadLine());
+
+    banca.AggiungiCliente(nome, cognome, codiceFiscale, stipendio);
 }
