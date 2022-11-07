@@ -27,6 +27,7 @@
 //visualizzare per ogni cliente, la situazione dei suoi prestiti in formato tabellare.
 
 Banca banca1 = new Banca("MPS");
+banca1.AggiungiCliente(new Cliente("andrei", "todi", "tdr", 9000));
 List<String> menuBanca = new List<String> { "Aggiungere un Cliente", "Modificare un cliente", "Ricerca un cliente", "Aggiungi un prestito", "Ricerca prestito per cliente",
 "Ricerca rate da pagare per cliente", "Stampa prospetto clienti", "Stampa prospetto utenti"};
 // Gestione menu console
@@ -58,6 +59,9 @@ while (!userChoise.Equals("esc"))
 
 void InizioMenu()
 {
+    Console.WriteLine();
+    Console.WriteLine();
+    Console.WriteLine();
     Console.WriteLine("Menu principale - " + banca1.Nome);
 
     PrintMenu(menuBanca);
@@ -86,7 +90,18 @@ Cliente CreaCliente()
     Console.WriteLine("Inserisci il codice fiscale del cliente");
     string codiceFiscale = Console.ReadLine();
     Console.WriteLine("Inserisci lo stipendio del cliente");
-    int stipendio = Convert.ToInt32(Console.ReadLine());
+    int stipendio;
+    // controllo sullo stipendio e la conversione per evitare errori
+    string controllo = Console.ReadLine();
+    if (controllo.Equals(""))
+    {
+        stipendio = 0;
+    }
+    else
+    {
+        stipendio = Convert.ToInt32(controllo);
+    }
+        
 
     return new Cliente(nome, cognome, codiceFiscale, stipendio);
 }
@@ -140,6 +155,8 @@ void ModificaCliente(Banca banca)
         StampaCliente(clienteDaModificare);
         Cliente clienteModificato = CreaCliente();
         banca.ModificaCliente(clienteDaModificare, clienteModificato);
+        Console.WriteLine("Cliente modificato correttamente,i nuovi dati sono: ");
+        StampaCliente(clienteDaModificare);
     } else
     {
         Console.WriteLine("Cliente non trovato");
