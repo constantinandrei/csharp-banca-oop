@@ -49,6 +49,16 @@ public class Banca
         return true;
     }
     
-
+    public Cliente RicercaCliente(string codiceFiscale)
+    {
+        foreach (Cliente cliente in clienti)
+        {
+            if (cliente.CodiceFiscale.Equals(codiceFiscale))
+            {
+                return cliente;
+            }
+        }
+        return null;
+    }
    
 }

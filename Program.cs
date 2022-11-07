@@ -44,6 +44,9 @@ while (!userChoise.Equals("esc"))
         case "7":
             StampaListaClienti(banca1.clienti);
             break;
+        case "3":
+            CercaCliente(banca1);
+            break;
         default:
             break;
     }
@@ -91,9 +94,27 @@ void StampaListaClienti(List<Cliente> clienti)
     Console.WriteLine("----------------");
     foreach (Cliente cliente in clienti)
     {
-        Console.WriteLine("Nome:      " + cliente.Nome);
-        Console.WriteLine("Cognome:   " + cliente.Cognome);
-        Console.WriteLine("C.F.:      " + cliente.CodiceFiscale);
-        Console.WriteLine("Stipendio: " + cliente.Stipendio);
+        StampaCliente(cliente);
+    }
+}
+
+void StampaCliente(Cliente cliente)
+{
+    Console.WriteLine("Nome:      " + cliente.Nome);
+    Console.WriteLine("Cognome:   " + cliente.Cognome);
+    Console.WriteLine("C.F.:      " + cliente.CodiceFiscale);
+    Console.WriteLine("Stipendio: " + cliente.Stipendio);
+}
+
+void CercaCliente(Banca banca)
+{
+    Console.WriteLine("Inserire il Codice Fiscale del Cliente");
+    Cliente trovato = banca.RicercaCliente(Console.ReadLine());
+    if (trovato != null)
+    {
+        StampaCliente(trovato);
+    } else
+    {
+        Console.WriteLine("Non abbiamo questo codice fiscale nel nostro database");
     }
 }
