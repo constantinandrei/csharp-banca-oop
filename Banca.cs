@@ -26,6 +26,8 @@
 //Bonus:
 //visualizzare per ogni cliente, la situazione dei suoi prestiti in formato tabellare.
 
+using System.Reflection.Metadata.Ecma335;
+
 public class Banca
 {
     public string Nome { get;}
@@ -38,4 +40,15 @@ public class Banca
         clienti = new List<Cliente>();
         prestito = new List<Prestito>();
     }
+
+    public bool AggiungiCliente(string nome, string cognome, string codiceFiscale, int stipendio)
+    {
+        if (nome == null || cognome == null || codiceFiscale == null || stipendio <= 0)
+            return false;
+        clienti.Add(new Cliente(nome, cognome, codiceFiscale, stipendio));
+        return true;
+    }
+    
+
+   
 }

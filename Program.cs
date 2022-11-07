@@ -27,7 +27,8 @@
 //visualizzare per ogni cliente, la situazione dei suoi prestiti in formato tabellare.
 
 Banca banca = new Banca("MPS");
-
+List<String> menuBanca = new List<String> { "Aggiungere un Cliente", "Modificare un cliente", "Ricerca un cliente", "Aggiungi un prestito", "Ricerca prestito per cliente",
+"Ricerca rate da pagare per cliente", "Stampa prospetto clienti", "Stampa prospetto utenti"};
 // Gestione menu console
 
 string userChoise = "start";
@@ -42,21 +43,18 @@ void InizioMenu()
 {
     Console.WriteLine("Menu principale - " + banca.Nome);
 
-    MenuBanca();
+    printMenu(menuBanca);
     Console.WriteLine("Per uscire digitare 'esc' e premere Invio");
     userChoise = Console.ReadLine();
 }
 
-void MenuBanca()
+
+void printMenu(List<String> vociMenu)
 {
     Console.WriteLine("--------------------------------------");
-    Console.WriteLine("1. Aggiungere un cliente");
-    Console.WriteLine("2. Modificare un cliente");
-    Console.WriteLine("3. Ricerca un cliente");
-    Console.WriteLine("4. Aggiungi un prestito");
-    Console.WriteLine("5. Ricerca prestito per cliente");
-    Console.WriteLine("6. Ricerca rate da pagare per cliente");
-    Console.WriteLine("7. Stampa prospetto clienti");
-    Console.WriteLine("8. Stampa prospetto utenti");
+    for (int i = 0; i < vociMenu.Count; i++)
+    {
+        Console.WriteLine("{0}. {1}", i+1, vociMenu[i]);
+    }
     Console.WriteLine("--------------------------------------");
 }
